@@ -1,8 +1,10 @@
-# Ceiling Estimator
-This is a simple ceiling estimator app built with [SolidJS](https://solidjs.com/) and [Vite](https://vitejs.dev/).
-It allows users to input the dimensions of a room and calculates the total area of the ceiling.
+# Roof Estimator
+
+This is a simple roof estimator app built with [SolidJS](https://solidjs.com/) and [Vite](https://vitejs.dev/).
+It allows users to input the dimensions of a room and calculates the total area of the roof.
 
 ## Features
+
 - Responsive design
 - Simple and intuitive user interface
 - Real-time calculations
@@ -12,7 +14,7 @@ It allows users to input the dimensions of a room and calculates the total area 
 ## Usage
 
 ```bash
-$ npm install # or pnpm install or yarn install
+npm install # or pnpm install or yarn install
 ```
 
 ### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
