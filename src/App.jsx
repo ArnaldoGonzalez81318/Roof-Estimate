@@ -1,35 +1,27 @@
-import { createSignal } from 'solid-js'
-import solidLogo from './assets/solid.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { createSignal } from 'solid-js';
+import Estimator from './components/Estimator';
+import ThemeToggle from './components/ThemeToggle';
+import './App.css';
 
 function App() {
-  const [count, setCount] = createSignal(0)
+  const [theme, setTheme] = createSignal('light');
+
+  const toggleTheme = () => {
+    setTheme(theme() === 'light' ? 'dark' : 'light');
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} class="logo" alt="Vite logo" />
-        </a>
-        <a href="https://solidjs.com" target="_blank">
-          <img src={solidLogo} class="logo solid" alt="Solid logo" />
-        </a>
-      </div>
-      <h1>Vite + Solid</h1>
-      <div class="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count()}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p class="read-the-docs">
-        Click on the Vite and Solid logos to learn more
-      </p>
-    </>
-  )
+    <div class={`app ${theme()}`}>
+      <header>
+        <h1>Florida Roof Cost Estimator</h1>
+        <p>Estimate the cost of your new roof based on type and size.</p>
+        <p>Note: This is a simple estimator and does not include labor or other costs.</p>
+        <p>For a more accurate estimate, please consult a professional.</p>
+        <ThemeToggle toggleTheme={toggleTheme} theme={theme()} />
+      </header>
+      <Estimator />
+    </div>
+  );
 }
 
-export default App
+export default App;
