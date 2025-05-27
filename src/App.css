@@ -56,6 +56,29 @@ select {
   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 3px rgba(74, 143, 106, 0.2);
+  background-color: var(--input-light);
+  color: var(--text-light);
+}
+
+/* Remove spinner buttons for number inputs */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  /* Chrome, Safari, Edge */
+  margin: 0;
+}
+
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+  /* Firefox */
+}
+
 .app.light input,
 .app.light select {
   background-color: var(--input-light);
