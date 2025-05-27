@@ -30,6 +30,7 @@
   width: 100%;
   min-height: 100vh;
   transition: background-color 0.3s, color 0.3s;
+  padding: 2rem;
 }
 
 header {
@@ -56,29 +57,19 @@ select {
   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
-input:focus,
-select:focus {
-  outline: none;
-  border-color: var(--primary-green);
-  box-shadow: 0 0 0 3px rgba(74, 143, 106, 0.2);
-  background-color: var(--input-light);
-  color: var(--text-light);
-}
-
-/* Remove spinner buttons for number inputs */
+/* Number Input Spinner Removal */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
-  /* Chrome, Safari, Edge */
   margin: 0;
 }
 
 input[type="number"] {
   appearance: textfield;
   -moz-appearance: textfield;
-  /* Firefox */
 }
 
+/* Input theme styles */
 .app.light input,
 .app.light select {
   background-color: var(--input-light);
@@ -93,6 +84,14 @@ input[type="number"] {
   border-color: var(--border-color-dark);
 }
 
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 3px rgba(74, 143, 106, 0.2);
+}
+
+/* Buttons */
 button {
   font-size: 1rem;
   padding: 0.6rem;
@@ -114,6 +113,7 @@ button:focus-visible {
   outline-offset: 2px;
 }
 
+/* Results Section */
 .results {
   margin-top: 1rem;
   font-weight: bold;
