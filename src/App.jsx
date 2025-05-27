@@ -1,25 +1,25 @@
 import { createSignal } from 'solid-js';
-import Estimator from './components/Estimator';
+import { Router, Route } from '@solidjs/router';
+import Home from './routes/home';
+import Calculator from './routes/Calculator';
 import ThemeToggle from './components/ThemeToggle';
 import './App.css';
 
 function App() {
   const [theme, setTheme] = createSignal('light');
-
-  const toggleTheme = () => {
-    setTheme(theme() === 'light' ? 'dark' : 'light');
-  };
+  const toggleTheme = () =>
+    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
 
   return (
     <div class={`app ${theme()}`}>
       <header>
-        <h1>Florida Roof Cost Estimator</h1>
-        <p>Estimate the cost of your new roof based on type and size.</p>
-        <p>Note: This is a simple estimator and does not include labor or other costs.</p>
-        <p>For a more accurate estimate, please consult a professional.</p>
         <ThemeToggle toggleTheme={toggleTheme} theme={theme()} />
       </header>
-      <Estimator />
+
+      <Router>
+        <Route path="/" component={Home} />
+        <Route path="/calculator" component={Calculator} />
+      </Router>
     </div>
   );
 }
