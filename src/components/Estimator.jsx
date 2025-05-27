@@ -1,47 +1,91 @@
 import { createSignal } from 'solid-js';
 
-const costPerSqFt = {
-  asphalt: [4.00, 7.00],
-  tile: [8.00, 15.00],
-  metal: [7.00, 12.00]
-};
+const rateTable = [
+  { project: 'Re-Roof', material: 'Shingle', area: sqft => sqft < 1000, rate: 8.5 },
+  { project: 'Re-Roof', material: 'Tile', area: sqft => sqft >= 1000 && sqft <= 2500, rate: 9.5 },
+  { project: 'Re-Roof', material: 'Metal', area: sqft => sqft > 2500, rate: 10.5 },
+  {
+    project: 'Re-Roof', material: 'Low-Slope',
+    area: sqft => sqft < 1000, rate: 9.5
+  },
+  {
+    project: 'Re-Roof', material: 'Low-Slope',
+    area: sqft => sqft >= 1000, rate: 7.0
+  },
+  {
+    project: 'New Roof', material: 'Any',
+    area: () => true, rate: 'Contact Directly'
+  }
+];
 
-const roofLabels = {
-  asphalt: "Asphalt Shingle",
-  tile: "Tile (Clay/Concrete)",
-  metal: "Metal"
-};
+const materials = ['Shingle', 'Tile', 'Metal', 'Low-Slope'];
 
 function Estimator() {
+  const [project, setProject] = createSignal('Re-Roof');
+  const [material, setMaterial] = createSignal('Shingle');
   const [squareFeet, setSquareFeet] = createSignal('');
-  const [type, setType] = createSignal('asphalt');
   const [estimate, setEstimate] = createSignal(null);
 
   const handleCalculate = () => {
     const sqft = parseFloat(squareFeet());
     if (!sqft || sqft <= 0) return;
 
-    const [minCost, maxCost] = costPerSqFt[type()];
-    const estimatedMin = (sqft * minCost).toFixed(2);
-    const estimatedMax = (sqft * maxCost).toFixed(2);
+    // Match row in rate table
+    const match = rateTable.find(entry => {
+      const projectMatch = entry.project === project();
+      const materialMatch =
+        entry.material === material() || entry.material === 'Any';
+      const areaMatch = entry.area(sqft);
+      return projectMatch && materialMatch && areaMatch;
+    });
+
+    if (!match) {
+      setEstimate({
+        sqft,
+        rate: null,
+        cost: null,
+        message: 'No estimate available for the selected options.'
+      });
+      return;
+    }
+
+    if (match.rate === 'Contact Directly') {
+      setEstimate({
+        sqft,
+        rate: null,
+        cost: null,
+        message: 'Please contact us directly for a new roof estimate.'
+      });
+      return;
+    }
+
+    const cost = (match.rate * sqft).toFixed(2);
 
     setEstimate({
       sqft,
-      estimatedMin,
-      estimatedMax,
-      costRange: [minCost, maxCost],
-      label: roofLabels[type()]
+      rate: match.rate,
+      cost,
+      material: material(),
+      project: project()
     });
   };
 
   return (
     <div class="estimator">
       <label>
-        Roof Type:
-        <select value={type()} onInput={(e) => setType(e.target.value)}>
-          <option value="asphalt">Asphalt Shingle</option>
-          <option value="tile">Tile (Clay/Concrete)</option>
-          <option value="metal">Metal</option>
+        Project Type:
+        <select value={project()} onInput={(e) => setProject(e.target.value)}>
+          <option value="Re-Roof">Re-Roof</option>
+          <option value="New Roof">New Roof</option>
+        </select>
+      </label>
+
+      <label>
+        Roof Material:
+        <select value={material()} onInput={(e) => setMaterial(e.target.value)}>
+          {materials.map((m) => (
+            <option value={m}>{m}</option>
+          ))}
         </select>
       </label>
 
@@ -59,14 +103,19 @@ function Estimator() {
 
       {estimate() && (
         <div class="results">
-          <p><strong>Roof Type:</strong> {estimate().label}</p>
-          <p><strong>Area:</strong> {estimate().sqft} sq ft</p>
-          <p><strong>Cost per sq ft:</strong> ${estimate().costRange[0]} – ${estimate().costRange[1]}</p>
-          <p><strong>Estimated Cost:</strong> ${estimate().estimatedMin} – ${estimate().estimatedMax}</p>
-          <hr />
-          <p><em>Calculation:</em> Sq Ft × Cost per Sq Ft = Estimated Cost</p>
-          <p><code>{estimate().sqft} × {estimate().costRange[0]} = ${estimate().estimatedMin}</code></p>
-          <p><code>{estimate().sqft} × {estimate().costRange[1]} = ${estimate().estimatedMax}</code></p>
+          {estimate().message ? (
+            <p><strong>Note:</strong> {estimate().message}</p>
+          ) : (
+            <>
+              <p><strong>Project Type:</strong> {estimate().project}</p>
+              <p><strong>Material:</strong> {estimate().material}</p>
+              <p><strong>Area:</strong> {estimate().sqft} sq ft</p>
+              <p><strong>Rate:</strong> ${estimate().rate}/ft²</p>
+              <p><strong>Estimated Cost:</strong> ${estimate().cost}</p>
+              <hr />
+              <p><em>Calculation:</em> {estimate().sqft} × {estimate().rate} = ${estimate().cost}</p>
+            </>
+          )}
         </div>
       )}
     </div>
