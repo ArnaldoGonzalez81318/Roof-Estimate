@@ -37,27 +37,38 @@ header {
   margin-bottom: 2rem;
 }
 
-.home {
+.home h1 {
+  font-size: 2.5rem;
+  color: var(--primary-green);
+}
+
+.home p {
+  font-size: 1.1rem;
+  margin-top: 1rem;
   max-width: 600px;
-  text-align: center;
-  margin-top: 4rem;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
 }
 
 .start-button {
   display: inline-block;
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   padding: 0.75rem 1.5rem;
   font-size: 1.1rem;
-  border: none;
   border-radius: 6px;
   background-color: var(--primary-green);
   color: white;
   text-decoration: none;
   transition: background-color 0.3s;
+  cursor: pointer;
+  border: none;
 }
 
 .start-button:hover {
-  background-color: #2e6e4e;
+  background-color: rgba(74, 143, 106, 0.8);
+  color: white;
+  transform: scale(1.05);
 }
 
 .estimator {
