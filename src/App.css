@@ -255,6 +255,7 @@ body.dark .explanation {
 .about {
   background-color: #fafafa;
   border-radius: 12px;
+  margin: 4rem auto;
   padding: 2rem;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
 }
