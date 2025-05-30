@@ -239,7 +239,7 @@ body.dark .calculator .explanation {
   padding: 1rem;
   border-radius: 6px;
   margin-top: 1rem;
-  font-family: 'Courier New', monospace;
+  font-family: 'Courier New', Courier, monospace;
   font-size: 0.95rem;
   white-space: pre-line;
 }
