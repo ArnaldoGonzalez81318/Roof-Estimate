@@ -180,6 +180,7 @@ body.dark .calculator {
   border: 1px solid #ccc;
   border-radius: 8px;
   transition: border-color 0.2s, background-color 0.2s;
+  cursor: pointer;
 }
 
 body.dark .calculator input,
