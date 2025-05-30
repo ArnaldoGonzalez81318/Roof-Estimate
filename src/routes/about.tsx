@@ -1,16 +1,25 @@
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 export default function About() {
   return (
     <>
       <Header />
-      <main class="p-8 max-w-3xl mx-auto">
-        <h2 class="text-3xl font-bold mb-4">About Roofing KING Construction</h2>
+      <main class="container about">
+        <h1>About Roofing KING Construction</h1>
         <p>
-          Roofing KING Construction has over 20 years of experience delivering top-tier roofing solutions to homeowners
-          and businesses. We pride ourselves on craftsmanship, transparency, and lasting customer relationships.
+          Roofing KING Construction has over 20 years of experience delivering reliable, professional,
+          and affordable roofing services across the region.
+        </p>
+        <p>
+          Our team is dedicated to quality craftsmanship and customer satisfaction. Whether it's a
+          residential re-roof or a complex commercial project, we're here to help.
+        </p>
+        <p>
+          Get in touch today and experience why we’re called the KING of Roofing.
         </p>
       </main>
+      <Footer />
     </>
   );
 }
