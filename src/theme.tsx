@@ -1,4 +1,4 @@
-import { createSignal, createContext, useContext } from 'solid-js';
+import { createSignal, createContext, useContext, onMount } from 'solid-js';
 import type { JSX } from 'solid-js/jsx-runtime';
 
 type ThemeContextType = {
@@ -6,30 +6,28 @@ type ThemeContextType = {
   toggleTheme: () => void;
 };
 
-// Create the context with correct type
 const ThemeContext = createContext<ThemeContextType>();
 
-// Provider component
 export function ThemeProvider(props: { children: JSX.Element }) {
   const [theme, setTheme] = createSignal('light');
 
   const toggleTheme = () => {
     const newTheme = theme() === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
-    document.documentElement.classList.toggle('dark', newTheme === 'dark');
+    document.body.classList.toggle('dark', newTheme === 'dark');
   };
 
+  onMount(() => {
+    document.body.classList.toggle('dark', theme() === 'dark');
+  });
+
   return (
-    <ThemeContext.Provider value= {{ theme, toggleTheme }
-}>
-  <div class={ theme() === 'dark' ? 'dark' : '' }>
-    { props.children }
-    </div>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {props.children}
     </ThemeContext.Provider>
   );
 }
 
-// Hook to access context
 export const useTheme = () => {
   const ctx = useContext(ThemeContext);
   if (!ctx) throw new Error("useTheme must be used within a ThemeProvider");
