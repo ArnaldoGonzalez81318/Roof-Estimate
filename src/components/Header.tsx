@@ -1,17 +1,20 @@
-import { A } from '@solidjs/router';
-
+import { A, useLocation } from '@solidjs/router';
 import ThemeToggle from './ThemeToggle';
 
 export default function Header() {
+  const location = useLocation();
+
   return (
-    <nav class="flex justify-between items-center p-4 bg-white dark:bg-gray-900 text-black dark:text-white shadow">
-      <h1 class="text-xl font-bold">Roofing KING Construction</h1>
-      <div class="space-x-4">
-        <A href="/">Home</A>
-        <A href="/estimate">Calculator</A>
-        <A href="/about">About</A>
-        <ThemeToggle />
-      </div>
-    </nav>
+    <header class="site-header">
+      <nav>
+        <div><strong>Roofing KING</strong></div>
+        <div>
+          <A href="/" class={location.pathname === '/' ? 'active' : ''}>Home</A>
+          <A href="/estimate" class={location.pathname === '/estimate' ? 'active' : ''}>Calculator</A>
+          <A href="/about" class={location.pathname === '/about' ? 'active' : ''}>About</A>
+          <ThemeToggle />
+        </div>
+      </nav>
+    </header>
   );
 }
