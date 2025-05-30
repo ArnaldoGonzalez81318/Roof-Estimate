@@ -1,13 +1,17 @@
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 export default function Home() {
   return (
     <>
       <Header />
-      <main class="p-8 text-center">
-        <h2 class="text-4xl font-bold mb-4">Welcome to Roofing KING Construction</h2>
-        <p class="text-lg">Your trusted partner for reliable and affordable roofing solutions.</p>
-      </main>
+      <section class="hero">
+        <div class="hero-content">
+          <h1>Roofing KING Construction</h1>
+          <p>Reliable. Affordable. Trusted for over 20 years.</p>
+        </div>
+      </section>
+      <Footer />
     </>
   );
 }
