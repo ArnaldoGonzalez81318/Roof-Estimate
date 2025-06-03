@@ -128,7 +128,6 @@ body.dark .site-header nav a.active {
 /* === HERO SECTION === */
 .hero {
   position: relative;
-  height: calc(100vh - 236px);
   background: url('/vite.svg') no-repeat center/cover;
   display: flex;
   align-items: center;
@@ -161,7 +160,6 @@ body.dark .site-header nav a.active {
 /* === CALCULATOR === */
 .calculator {
   max-width: 600px;
-  height: calc(100vh - 300px);
   margin: 4rem auto;
   background-color: #f8f8f8;
   padding: 2rem;
@@ -267,7 +265,6 @@ body.dark .explanation {
 
 /* === ABOUT PAGE === */
 .about {
-  height: calc(100vh - 300px);
   background-color: #fafafa;
   border-radius: 12px;
   margin: 4rem auto;
