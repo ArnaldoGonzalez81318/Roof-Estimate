@@ -53,8 +53,7 @@ export default function Estimate() {
     } else {
       const cost = (rate * ft2).toFixed(2);
       setResult(`Estimated Cost: $${cost}`);
-
-      const recipeStyle = `
+      setExplanation(`
 🧾 Roofing Estimate Recipe
 
 👷 Project Type:      ${pt}
@@ -65,12 +64,10 @@ export default function Estimate() {
 ${reason}
 
 📊 Calculation:
-${ft2} ft² × $${rate.toFixed(2)} = $${cost}
+${ft2} × $${rate.toFixed(2)} = $${cost}
 
 💬 Total Estimate:    $${cost}
-  `.trim();
-
-      setExplanation(recipeStyle);
+      `.trim());
     }
   };
 
@@ -105,17 +102,13 @@ ${ft2} ft² × $${rate.toFixed(2)} = $${cost}
           onInput={e => setArea(Number(e.currentTarget.value))}
         />
 
-        <button onClick={calculate}>Estimate</button>
+        <button class="estimate-button" onClick={calculate}>Estimate</button>
 
-        {result() && (
-          <>
-            <div class="result">{result()}</div>
-            {explanation() && (
-              <pre class="explanation" style="white-space: pre-line;">
-                {explanation()}
-              </pre>
-            )}
-          </>
+        {result() && <div class="result">{result()}</div>}
+        {explanation() && (
+          <pre class="explanation" style="white-space: pre-line;">
+            {explanation()}
+          </pre>
         )}
       </main>
       <Footer />
