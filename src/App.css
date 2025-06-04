@@ -92,6 +92,15 @@ body.dark .site-header {
   gap: 1rem;
 }
 
+.menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+}
+
 .site-header nav a {
   margin-left: 1rem;
   font-weight: 500;
@@ -126,6 +135,7 @@ button:hover,
 body.dark .theme-toggle {
   background-color: var(--color-secondary);
   color: var(--color-text-dark);
+  padding: 0.5rem 1rem;
   transition: background-color var(--transition);
 }
 
@@ -388,13 +398,32 @@ body.dark .site-footer a:active {
 /* === MEDIA QUERIES === */
 @media (max-width: 768px) {
   .site-header nav {
-    flex-direction: column;
     align-items: flex-start;
   }
 
+  .menu-toggle {
+    display: block;
+  }
+
   .nav-links {
-    flex-direction: column;
-    gap: 0.5rem;
+    display: none;
+    width: 100%;
+    padding-top: 1rem;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links a,
+  .nav-links button {
+    width: 100%;
+    text-align: left;
+    padding: 0.5rem 0;
+  }
+
+  .site-header nav {
+    align-items: flex-start;
   }
 
   .hero {
@@ -493,12 +522,10 @@ body.dark .site-footer a:active {
 
 @media (max-width: 576px) {
   .site-header nav {
-    flex-direction: column;
     align-items: center;
   }
 
   .nav-links {
-    flex-direction: column;
     gap: 0.5rem;
   }
 
