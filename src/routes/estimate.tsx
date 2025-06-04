@@ -51,22 +51,33 @@ export default function Estimate() {
       setResult('Contact Directly for this project combination.');
       setExplanation('');
     } else {
-      const cost = (rate * ft2).toFixed(2);
-      setResult(`Estimated Cost: $${cost}`);
+      const costValue = rate * ft2;
+
+      const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      });
+
+      const formattedCost = formatter.format(costValue);
+      const formattedRate = formatter.format(rate);
+
+      setResult(`Estimated Cost: ${formattedCost}`);
       setExplanation(`
 🧾 Roofing Estimate Recipe
 
 👷 Project Type:      ${pt}
 🔨 Roof Material:     ${mat}
-📐 Roof Area:         ${ft2} ft²
+📐 Roof Area:         ${ft2.toLocaleString()} ft²
 
 💡 Rate Explanation:
 ${reason}
 
 📊 Calculation:
-${ft2} × $${rate.toFixed(2)} = $${cost}
+${ft2.toLocaleString()} × ${formattedRate} = ${formattedCost}
 
-💬 Total Estimate:    $${cost}
+💬 Total Estimate:    ${formattedCost}
       `.trim());
     }
   };
