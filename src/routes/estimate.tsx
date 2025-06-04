@@ -97,7 +97,7 @@ ${ft2.toLocaleString()} × ${formattedRate} = ${formattedCost}
             value={projectType()}
             onInput={(e) => setProjectType(e.currentTarget.value)}
           >
-            <option value="">Select</option>
+            <option value="">Select Project Type</option>
             <option>Re-Roof</option>
             <option>New Roof</option>
           </select>
@@ -110,7 +110,7 @@ ${ft2.toLocaleString()} × ${formattedRate} = ${formattedCost}
             value={material()}
             onInput={(e) => setMaterial(e.currentTarget.value)}
           >
-            <option value="">Select</option>
+            <option value="">Select Roof Material</option>
             <option>Shingle</option>
             <option>Tile</option>
             <option>Metal</option>
@@ -127,6 +127,11 @@ ${ft2.toLocaleString()} × ${formattedRate} = ${formattedCost}
             placeholder="Enter square footage"
             value={area()}
             onInput={(e) => setArea(Number(e.currentTarget.value))}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                calculate();
+              }
+            }}
           />
 
           <button class="estimate-button" onClick={calculate}>
