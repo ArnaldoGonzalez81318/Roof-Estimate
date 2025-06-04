@@ -10,23 +10,30 @@ export default function Header() {
 
   return (
     <header class="site-header">
-      <nav>
-        <div class="logo">
-          <strong>Roofing KING</strong>
+      <nav class="nav-container">
+        <div class="left-section">
+          <button
+            class="menu-toggle"
+            aria-label="Toggle menu"
+            onClick={() => setMenuOpen(!menuOpen())}
+          >
+            ☰
+          </button>
+
+          <div class="logo">
+            <A href="/" onClick={() => setMenuOpen(false)}>
+              <img src="/vite.svg" alt="Logo" class="logo-img" />
+            </A>
+          </div>
         </div>
 
-        <button
-          class="menu-toggle"
-          aria-label="Toggle menu"
-          onClick={() => setMenuOpen(!menuOpen())}
-        >
-          ☰
-        </button>
+        <div class="right-section">
+          <div class={`nav-links ${menuOpen() ? 'open' : ''}`}>
+            <A href="/" class={isActive('/') ? 'active' : ''} onClick={() => setMenuOpen(false)}>Home</A>
+            <A href="/estimate" class={isActive('/estimate') ? 'active' : ''} onClick={() => setMenuOpen(false)}>Calculator</A>
+            <A href="/about" class={isActive('/about') ? 'active' : ''} onClick={() => setMenuOpen(false)}>About</A>
+          </div>
 
-        <div class={`nav-links ${menuOpen() ? 'open' : ''}`}>
-          <A href="/" class={isActive('/') ? 'active' : ''}>Home</A>
-          <A href="/estimate" class={isActive('/estimate') ? 'active' : ''}>Calculator</A>
-          <A href="/about" class={isActive('/about') ? 'active' : ''}>About</A>
           <ThemeToggle />
         </div>
       </nav>
