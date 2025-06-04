@@ -74,43 +74,64 @@ ${ft2} × $${rate.toFixed(2)} = $${cost}
   return (
     <>
       <Header />
-      <main class="calculator">
-        <h1>Estimate Calculator</h1>
+      <section class="estimate">
+        <main class="calculator">
+          <h1>Estimate Calculator</h1>
 
-        <label>Project Type:</label>
-        <select value={projectType()} onInput={e => setProjectType(e.currentTarget.value)}>
-          <option value="">Select</option>
-          <option>Re-Roof</option>
-          <option>New Roof</option>
-        </select>
+          <label for="projectType" class="project-type-label">
+            Project Type:
+          </label>
+          <select
+            id="projectType"
+            value={projectType()}
+            onInput={(e) => setProjectType(e.currentTarget.value)}
+          >
+            <option value="">Select</option>
+            <option>Re-Roof</option>
+            <option>New Roof</option>
+          </select>
 
-        <label>Roof Material:</label>
-        <select value={material()} onInput={e => setMaterial(e.currentTarget.value)}>
-          <option value="">Select</option>
-          <option>Shingle</option>
-          <option>Tile</option>
-          <option>Metal</option>
-          <option>Low-Slope</option>
-          <option>Any</option>
-        </select>
+          <label for="material" class="material-label">
+            Roof Material:
+          </label>
+          <select
+            id="material"
+            value={material()}
+            onInput={(e) => setMaterial(e.currentTarget.value)}
+          >
+            <option value="">Select</option>
+            <option>Shingle</option>
+            <option>Tile</option>
+            <option>Metal</option>
+            <option>Low-Slope</option>
+            <option>Any</option>
+          </select>
 
-        <label>Area (ft²):</label>
-        <input
-          type="number"
-          placeholder="Enter square footage"
-          value={area()}
-          onInput={e => setArea(Number(e.currentTarget.value))}
-        />
+          <label for="area" class="area-label">
+            Area (ft²):
+          </label>
+          <input
+            id="area"
+            type="number"
+            placeholder="Enter square footage"
+            value={area()}
+            onInput={(e) => setArea(Number(e.currentTarget.value))}
+          />
 
-        <button class="estimate-button" onClick={calculate}>Estimate</button>
+          <button class="estimate-button" onClick={calculate}>
+            Estimate
+          </button>
 
-        {result() && <div class="result">{result()}</div>}
-        {explanation() && (
-          <pre class="explanation" style="white-space: pre-line;">
-            {explanation()}
-          </pre>
-        )}
-      </main>
+          {result() && <div class="result">{result()}</div>}
+          {explanation() && (
+            <pre class="explanation">
+              <strong>Estimate Explanation:</strong>
+              <br />
+              {explanation()}
+            </pre>
+          )}
+        </main>
+      </section>
       <Footer />
     </>
   );
