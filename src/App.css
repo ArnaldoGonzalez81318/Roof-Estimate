@@ -236,6 +236,10 @@ body.dark .calculator label {
   transition: background-color var(--transition), color var(--transition), border-color var(--transition);
 }
 
+.calculator select {
+  cursor: pointer;
+}
+
 body.dark .calculator input,
 body.dark .calculator select {
   background-color: #1e1e1e;
