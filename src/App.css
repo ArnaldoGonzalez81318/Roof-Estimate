@@ -334,3 +334,38 @@ body.dark .site-footer {
   background-color: #1e1e1e;
   color: #aaa;
 }
+
+.site-footer p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+body.dark .site-footer p {
+  color: #ccc;
+}
+
+.site-footer a {
+  color: var(--color-link);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.site-footer a:hover {
+  color: var(--color-link-hover);
+}
+
+body.dark .site-footer a {
+  color: var(--color-link-dark);
+}
+
+body.dark .site-footer a:hover {
+  color: var(--color-link-hover-dark);
+}
+
+.site-footer a:active {
+  color: var(--color-link-active);
+}
+
+body.dark .site-footer a:active {
+  color: var(--color-link-active-dark);
+}
