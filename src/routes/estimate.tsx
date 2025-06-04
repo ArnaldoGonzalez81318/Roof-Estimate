@@ -124,7 +124,7 @@ ${ft2.toLocaleString()} × ${formattedRate} = ${formattedCost}
           <input
             id="area"
             type="number"
-            placeholder="Enter square footage"
+            placeholder="Enter area in square feet, e.g. 1500"
             value={area()}
             onInput={(e) => setArea(Number(e.currentTarget.value))}
             onKeyDown={(e) => {
