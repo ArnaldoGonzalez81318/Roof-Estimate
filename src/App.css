@@ -69,6 +69,18 @@ body.dark .site-header {
   position: relative;
 }
 
+.left-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .logo {
   font-size: 1.25rem;
   font-weight: bold;
